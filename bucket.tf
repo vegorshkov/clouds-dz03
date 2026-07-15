@@ -7,6 +7,12 @@ resource "yandex_storage_bucket" "main" {
   access_key = yandex_iam_service_account_static_access_key.terraform_sa_key.access_key
   secret_key = yandex_iam_service_account_static_access_key.terraform_sa_key.secret_key
 
+  anonymous_access_flags {
+    read        = true
+    list        = false
+    config_read = false
+  }
+
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
